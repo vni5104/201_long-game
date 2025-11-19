@@ -20,6 +20,7 @@
                 username = Console.ReadLine();
             }
 
+            // Check if file with username already exists
             if ( File.Exists($"{username}.txt") ) 
             {
                 Console.WriteLine($"Welcome back, {username}!");
@@ -28,18 +29,19 @@
                 StreamReader reader = new StreamReader($"{username}.txt");
                 score = int.Parse(reader.ReadLine());
                 reader.Close();
-                Console.WriteLine($"Previous score: {score}\n");
             }
             else
             {
                 Console.WriteLine($"Welcome, {username}!");
             }
+            Console.WriteLine($"Current score: {score}\n");
 
             // Gameplay
             while (!over)
             {
                 if (Console.ReadKey().Key == ConsoleKey.Enter)
                 {
+                    // Ends game when player presses Enter
                     over = true;
                 } 
                 else
