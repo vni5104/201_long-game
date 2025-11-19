@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             // Initialize variables
-            string username;
+            string username, name;
             int score = 0;
             bool over = false;
 
@@ -23,15 +23,18 @@
             // Check if file with username already exists
             if ( File.Exists($"{username}.txt") ) 
             {
-                Console.WriteLine($"Welcome back, {username}!");
-
                 // Retrieves existing data
                 StreamReader reader = new StreamReader($"{username}.txt");
+
+                name = reader.ReadLine();
                 score = int.Parse(reader.ReadLine());
                 reader.Close();
+
+                Console.WriteLine($"Welcome back, {name}!");
             }
             else
             {
+
                 Console.WriteLine($"Welcome, {username}!");
             }
             Console.WriteLine($"Current score: {score}\n");
@@ -54,6 +57,7 @@
 
             // Save score to file
             StreamWriter writer = new StreamWriter($"{username}.txt", false);
+            writer.WriteLine(username);
             writer.WriteLine(score);
             writer.Close();
         }
